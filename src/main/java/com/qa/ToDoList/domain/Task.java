@@ -35,6 +35,27 @@ public class Task {
 	@JsonIgnore
 	private User user;
 	
+	
+	
+
+	public Task() {
+		super();
+	}
+
+	public Task(Long id, String description, Boolean completed, User user) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.completed = completed;
+		this.user = user;
+	}
+	
+
+	public Task(String description, User user) {
+		super();
+		this.description = description;
+		this.user = user;
+	}
 
 	public User getUser() {
 		return user;
