@@ -65,12 +65,7 @@ public class TaskController {
 		return new ResponseEntity<>(this.taskservice.assignTask(taskId, userId), HttpStatus.OK);
 	}
 	
-	//@PutMapping("/{taskId}/user/{userId}")
-   // Subject assignUserToTask(@PathVariable long taskId, @RequestBody Long userId) {
-     //   Subject subject = subjectRepository.findById(subjectId).get();
-      //  Teacher teacher = teacherRepository.findById(teacherId).get();
-       // subject.setTeacher(teacher);
-       // return subjectRepository.save(subject);
+
   }
 	
 
