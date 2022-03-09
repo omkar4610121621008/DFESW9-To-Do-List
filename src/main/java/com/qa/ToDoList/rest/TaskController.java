@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.ToDoList.domain.Task;
+import com.qa.ToDoList.domain.User;
 import com.qa.ToDoList.service.TaskService;
 
 @RestController
@@ -57,5 +58,20 @@ public class TaskController {
 	public ResponseEntity<List<Task>> getAllTasksById(@PathVariable Long id) {
 	  return new ResponseEntity<>(this.taskservice.getAllTasksByUserId(id), HttpStatus.OK);
 	}
+	
+	
+	@PutMapping("/{taskId}/user/{userId}")
+	public ResponseEntity<Task> assignUserToTask(@PathVariable long taskId, @PathVariable Long userId) {
+		return new ResponseEntity<>(this.taskservice.assignTask(taskId, userId), HttpStatus.OK);
+	}
+	
+	//@PutMapping("/{taskId}/user/{userId}")
+   // Subject assignUserToTask(@PathVariable long taskId, @RequestBody Long userId) {
+     //   Subject subject = subjectRepository.findById(subjectId).get();
+      //  Teacher teacher = teacherRepository.findById(teacherId).get();
+       // subject.setTeacher(teacher);
+       // return subjectRepository.save(subject);
+  }
+	
 
-}
+

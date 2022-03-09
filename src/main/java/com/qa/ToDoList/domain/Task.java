@@ -25,10 +25,10 @@ public class Task {
 	@Column(nullable = false)
 	private String description;
 	
-	@Column
-	private Boolean completed;
+	@Column(nullable = false)
+	private Boolean completed;//ADD DEFAULT VALUE AND ITS STILL REQUIRED FOR SOME REASON
 	
-	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_fk", referencedColumnName = "id")
 	@JsonBackReference
 	private User user;
