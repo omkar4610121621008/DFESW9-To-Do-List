@@ -20,26 +20,28 @@ public class UserService {
 		this.repo = repo;
 	}
 	
-	public User create(User model) {
+	public User createUser(User model) {
 		return this.repo.save(model);
 	}
 	
-	public User update(long id, User model) {
+	public User updateUser(long id, User model) {
 		Optional<User> T = this.repo.findById(id);//MAYBE ADD OR ELSE THROWS
 		User exists = T.orElseThrow();
+		exists.setId(model.getId());
 		exists.setName(model.getName());
+		exists.setTasks(model.getTasks());
 		return this.repo.save(exists);
 	}
 	
-	public List<User> readAll() {
+	public List<User> readAllUsers() {
 		return this.repo.findAll();//MAYBE WORK ON THIS
 	}
 
-	public User readById(long id) {
+	public User readByUserId(long id) {
 		return this.repo.findById(id).orElseThrow();
 	}
 	
-	public boolean delete(long id) {
+	public boolean deleteUser(long id) {
 		Optional<User> userExists = this.repo.findById(id);
 		
 		if (userExists.isPresent()) {

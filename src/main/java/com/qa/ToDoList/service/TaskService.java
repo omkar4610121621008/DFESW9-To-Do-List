@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.qa.ToDoList.domain.Task;
+import com.qa.ToDoList.domain.User;
 import com.qa.ToDoList.repo.TaskRepository;
-
+import com.qa.ToDoList.repo.UserRepository;
+@Service
 public class TaskService {
 	
 	private TaskRepository repo;

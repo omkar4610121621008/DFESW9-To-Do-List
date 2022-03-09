@@ -10,10 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "task")
@@ -29,25 +25,18 @@ public class Task {
 	@Column(nullable = false)
 	private Boolean completed;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id", nullable = false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonIgnore
+	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_fk") 
 	private User user;
-	
-	
-	
 
 	public Task() {
 		super();
 	}
 
-	public Task(Long id, String description, Boolean completed, User user) {
+	
+	public Task(String description) {
 		super();
-		this.id = id;
 		this.description = description;
-		this.completed = completed;
-		this.user = user;
 	}
 	
 
@@ -56,6 +45,27 @@ public class Task {
 		this.description = description;
 		this.user = user;
 	}
+	
+	
+
+	public Task(Long id, String description, User user) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.user = user;
+	}
+	
+	
+
+
+	public Task(Long id, String description, Boolean completed, User user) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.completed = completed;
+		this.user = user;
+	}
+
 
 	public User getUser() {
 		return user;

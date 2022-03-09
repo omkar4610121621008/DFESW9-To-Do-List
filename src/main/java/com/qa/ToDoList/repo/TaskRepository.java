@@ -8,6 +8,6 @@ import com.qa.ToDoList.domain.Task;
 
 public interface TaskRepository extends JpaRepository<Task, Long>{
 	
-	public List<Task> findByUserId(Long id);
+	public List<Task> findByUserId(Long user_id);
 
 }

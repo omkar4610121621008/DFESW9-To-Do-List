@@ -14,38 +14,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.ToDoList.domain.User;
+import com.qa.ToDoList.service.TaskService;
 import com.qa.ToDoList.service.UserService;
 
 
 @RestController
 public class UserController {
 
+  private UserService service;//DO I NEED THIS???     ////\\\\\
+  
   @Autowired
-  private UserService service;
+	public UserController(UserService service) {
+		this.service = service;
+	}
 
   @GetMapping("/user/all")
   public ResponseEntity<List<User>> readAllUsers() {
-    return new ResponseEntity<>(this.service.readAll(), HttpStatus.OK);
+    return new ResponseEntity<>(this.service.readAllUsers(), HttpStatus.OK);
   }
 
   @GetMapping("/user/{id}")
   public ResponseEntity<User> getUserById(@PathVariable long id) {
-    return new ResponseEntity<>(this.service.readById(id), HttpStatus.OK);
+    return new ResponseEntity<>(this.service.readByUserId(id), HttpStatus.OK);
   }
 
   @PostMapping("/user")
   public ResponseEntity<User> createUser(@RequestBody User body) {
-    return new ResponseEntity<>(this.service.create(body), HttpStatus.CREATED);
+    return new ResponseEntity<>(this.service.createUser(body), HttpStatus.CREATED);
   }
 
   @PutMapping("/user-update/{id}")
   public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User body) {
-	  return new ResponseEntity<>(this.service.update(id, body), HttpStatus.OK);
+	  return new ResponseEntity<>(this.service.updateUser(id, body), HttpStatus.OK);
   }
 
   @DeleteMapping("/delete-user/{id}")
   public ResponseEntity<HttpStatus> deleteUser(@PathVariable long id) {
-    return new ResponseEntity<>(this.service.delete(id) ? HttpStatus.NO_CONTENT: HttpStatus.INTERNAL_SERVER_ERROR);
+    return new ResponseEntity<>(this.service.deleteUser(id) ? HttpStatus.NO_CONTENT: HttpStatus.INTERNAL_SERVER_ERROR);
   }//referenced those httpstatus from another project due to being stuck
   
 }
