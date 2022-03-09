@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.ToDoList.domain.User;
-import com.qa.ToDoList.service.TaskService;
 import com.qa.ToDoList.service.UserService;
 
 
@@ -30,7 +29,7 @@ public class UserController {
 
   @GetMapping("/user/all")
   public ResponseEntity<List<User>> readAllUsers() {
-    return new ResponseEntity<>(this.service.readAllUsers(), HttpStatus.OK);
+    return new ResponseEntity<>(this.service.readAll(), HttpStatus.OK);
   }
 
   @GetMapping("/user/{id}")
