@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.qa.ToDoList.domain.User;
 import com.qa.ToDoList.repo.UserRepository;
 
@@ -23,7 +22,7 @@ public class UserService {
 	public User createUser(User model) {
 		return this.repo.save(model);
 	}
-	
+
 	public User updateUser(long id, User model) {
 		Optional<User> T = this.repo.findById(id);//MAYBE ADD OR ELSE THROWS
 		User exists = T.orElseThrow();
@@ -33,7 +32,7 @@ public class UserService {
 		return this.repo.save(exists);
 	}
 	
-	public List<User> readAllUsers() {
+	public List<User> readAll() {
 		return this.repo.findAll();//MAYBE WORK ON THIS
 	}
 

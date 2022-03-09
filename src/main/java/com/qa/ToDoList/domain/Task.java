@@ -1,5 +1,6 @@
 package com.qa.ToDoList.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
@@ -22,11 +25,12 @@ public class Task {
 	@Column(nullable = false)
 	private String description;
 	
-	@Column(nullable = false)
+	@Column
 	private Boolean completed;
 	
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_fk") 
+	@JoinColumn(name = "user_fk", referencedColumnName = "id")
+	@JsonBackReference
 	private User user;
 
 	public Task() {

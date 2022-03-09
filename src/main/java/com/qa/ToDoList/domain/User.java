@@ -13,8 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table(name = "user")
@@ -29,7 +29,7 @@ public class User {
 	
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY )
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonManagedReference
 	private List<Task> tasks;
 	
 
@@ -86,23 +86,11 @@ public class User {
 	}
 
 
-	//public List<Task> getTasks() {
-	//	return tasks;
-	//}
-
-
-	//public void setTasks(List<Task> tasks) {
-	//	this.tasks = tasks;
-	//}
-
-
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + "]";
+		return "User [id=" + id + ", name=" + name + ", tasks=" + tasks + "]";
 	}
-	
-	
-	
+
 	
 	
 }
