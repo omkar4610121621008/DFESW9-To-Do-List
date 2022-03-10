@@ -51,15 +51,12 @@ public class Task {
 	}
 	
 	
-
-	public Task(Long id, String description, User user) {
+	public Task(Long id, String description, Boolean completed) {
 		super();
 		this.id = id;
 		this.description = description;
-		this.user = user;
+		this.completed = completed;
 	}
-	
-	
 
 
 	public Task(Long id, String description, Boolean completed, User user) {

@@ -20,7 +20,7 @@ import com.qa.ToDoList.service.UserService;
 @RestController
 public class UserController {
 
-  private UserService service;//DO I NEED THIS???     ////\\\\\
+  private UserService service;
   
   @Autowired
 	public UserController(UserService service) {
@@ -42,12 +42,12 @@ public class UserController {
     return new ResponseEntity<>(this.service.createUser(body), HttpStatus.CREATED);
   }
 
-  @PutMapping("/user-update/{id}")
+  @PutMapping("/user/update/{id}")
   public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User body) {
 	  return new ResponseEntity<>(this.service.updateUser(id, body), HttpStatus.OK);
   }
 
-  @DeleteMapping("/delete-user/{id}")
+  @DeleteMapping("/user/delete/{id}")
   public ResponseEntity<HttpStatus> deleteUser(@PathVariable long id) {
     return new ResponseEntity<>(this.service.deleteUser(id) ? HttpStatus.NO_CONTENT: HttpStatus.INTERNAL_SERVER_ERROR);
   }//referenced those httpstatus from another project due to being stuck
