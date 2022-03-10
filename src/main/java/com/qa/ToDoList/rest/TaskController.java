@@ -23,11 +23,12 @@ public class TaskController {
 	
 	private TaskService taskservice;
 	
-	private TaskRepository repo;
+	private TaskRepository repo;//PUT BOTTOM CONTROLLER INTO SERVICE
 	
 	@Autowired
-	public TaskController(TaskService taskservice) {
+	public TaskController(TaskService taskservice, TaskRepository repo) {
 		this.taskservice = taskservice;
+		this.repo = repo;
 	}
 	
 	
@@ -46,12 +47,12 @@ public class TaskController {
 	    return new ResponseEntity<>(this.taskservice.createTask(body), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/task-update/{id}")
+	@PutMapping("/task/update/{id}")
 	public ResponseEntity<Task> updateTaskById(@PathVariable long id, @RequestBody Task body) {
 		return new ResponseEntity<>(this.taskservice.updateTask(id, body), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/delete-task/{id}")
+	@DeleteMapping("/task/delete/{id}")
     public ResponseEntity<HttpStatus> deleteTaskById(@PathVariable long id) {
 	    return new ResponseEntity<>(this.taskservice.deleteTask(id) ? HttpStatus.NO_CONTENT: HttpStatus.INTERNAL_SERVER_ERROR);
 	}
@@ -69,7 +70,7 @@ public class TaskController {
 	
 	@GetMapping("/user/{user_id}/tasks")
 	public List<Task> getAllTasksByUserId(@PathVariable(value =  "user_id") Long user_id) {
-		return repo.findByUserId(user_id);
+		return this.repo.findByUserId(user_id);
 	}
 	
 
