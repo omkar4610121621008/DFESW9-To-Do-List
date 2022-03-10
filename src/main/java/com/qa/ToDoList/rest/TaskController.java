@@ -3,7 +3,6 @@ package com.qa.ToDoList.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,11 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.ToDoList.domain.Task;
-import com.qa.ToDoList.domain.User;
+
 import com.qa.ToDoList.repo.TaskRepository;
 import com.qa.ToDoList.service.TaskService;
 
@@ -70,8 +68,8 @@ public class TaskController {
 	}
 	
 	@GetMapping("/user/{user_id}/tasks")
-	public List<Task> getAllTasksByUserId(@PathVariable(value =  "user_id") Long user_id, Pageable pageable) {
-		return repo.findByUserId(user_id, pageable);
+	public List<Task> getAllTasksByUserId(@PathVariable(value =  "user_id") Long user_id) {
+		return repo.findByUserId(user_id);
 	}
 	
 
