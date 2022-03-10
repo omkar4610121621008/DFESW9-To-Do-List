@@ -19,11 +19,11 @@ public class TaskService {
 	@Autowired
 	private UserRepository userrepo;
 	
-	public List<Task> getAllTasksByUserId(Long id){
-		List<Task> tasks = new ArrayList<Task>();
-		taskrepo.findByUserId(id).forEach(tasks::add);
-		return tasks;
-	}
+	//public List<Task> getAllTasksByUserId(Long id){
+	//	List<Task> tasks = new ArrayList<Task>();
+	//	taskrepo.findByUserId(id).forEach(tasks::add);
+	//	return tasks;
+	//}
 
 	public Task createTask(Task model) {
 		return this.taskrepo.save(model);
@@ -32,7 +32,6 @@ public class TaskService {
 	public Task updateTask(long id, Task model) {
 		Optional<Task> T = this.taskrepo.findById(id);//MAYBE ADD OR ELSE THROWS
 		Task exists = T.orElseThrow();
-		exists.setId(model.getId());
 		exists.setDescription(model.getDescription());
 		exists.setCompleted(model.getCompleted());
 		return this.taskrepo.save(exists);//ask if we need id of foreign key

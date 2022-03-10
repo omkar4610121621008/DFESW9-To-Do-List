@@ -2,6 +2,7 @@ package com.qa.ToDoList.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,6 @@ public class UserService {
 	public User updateUser(long id, User model) {
 		Optional<User> T = this.repo.findById(id);//MAYBE ADD OR ELSE THROWS
 		User exists = T.orElseThrow();
-		exists.setId(model.getId());
 		exists.setName(model.getName());
 		exists.setTasks(model.getTasks());
 		return this.repo.save(exists);
@@ -50,9 +50,12 @@ public class UserService {
 		return false;
 	}
 	
+	//public List<User> getUsersByTasks(){
+	//	return this.repo.findAllUsersWithTasks();
+	}
+	
 	
 		
 		
 	
 
-}
