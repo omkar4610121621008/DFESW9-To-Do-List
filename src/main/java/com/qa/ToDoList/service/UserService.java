@@ -28,7 +28,6 @@ public class UserService {
 		Optional<User> T = this.repo.findById(id);//MAYBE ADD OR ELSE THROWS
 		User exists = T.orElseThrow();
 		exists.setName(model.getName());
-		exists.setTasks(model.getTasks());
 		return this.repo.save(exists);
 	}
 	

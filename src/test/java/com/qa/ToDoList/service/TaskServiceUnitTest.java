@@ -25,7 +25,7 @@ public class TaskServiceUnitTest {
 
 	
 	@Test
-	void testingCreateTask() {
+	public void testingCreateTask() {
 		Task todo = new Task(1L, "Gotta finish this project", true);
 		
 		when(repo.save(Mockito.any(Task.class))).thenReturn(todo);

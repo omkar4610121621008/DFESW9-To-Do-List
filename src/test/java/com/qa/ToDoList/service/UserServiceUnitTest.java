@@ -26,7 +26,7 @@ public class UserServiceUnitTest {
 
 	
 	@Test
-	void testingCreateUser() {
+	public void testingCreateUser() {
 		User user = new User(1L, "John");
 		
 		when(userrepo.save(Mockito.any(User.class))).thenReturn(user);
