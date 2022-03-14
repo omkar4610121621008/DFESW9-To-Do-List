@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.ToDoList.domain.User;
+import com.qa.ToDoList.domain.TaskUser;
 import com.qa.ToDoList.service.UserService;
 
 
@@ -28,22 +28,22 @@ public class UserController {
 	}
 
   @GetMapping("/user/all")
-  public ResponseEntity<List<User>> readAllUsers() {
+  public ResponseEntity<List<TaskUser>> readAllUsers() {
     return new ResponseEntity<>(this.service.readAll(), HttpStatus.OK);
   }
 
   @GetMapping("/user/{id}")
-  public ResponseEntity<User> getUserById(@PathVariable long id) {
+  public ResponseEntity<TaskUser> getUserById(@PathVariable long id) {
     return new ResponseEntity<>(this.service.readByUserId(id), HttpStatus.OK);
   }
 
   @PostMapping("/user")
-  public ResponseEntity<User> createUser(@RequestBody User body) {
+  public ResponseEntity<TaskUser> createUser(@RequestBody TaskUser body) {
     return new ResponseEntity<>(this.service.createUser(body), HttpStatus.CREATED);
   }
 
   @PutMapping("/user/update/{id}")
-  public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User body) {
+  public ResponseEntity<TaskUser> updateUser(@PathVariable long id, @RequestBody TaskUser body) {
 	  return new ResponseEntity<>(this.service.updateUser(id, body), HttpStatus.OK);
   }
 

@@ -7,14 +7,15 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.qa.ToDoList.domain.Task;
-import com.qa.ToDoList.domain.User;
+import com.qa.ToDoList.domain.TaskUser;
 import com.qa.ToDoList.service.TaskService;
-
+@SpringBootTest
 public class TaskControllerUnitTest {
 	
 	@MockBean
@@ -71,22 +72,22 @@ public class TaskControllerUnitTest {
 		
 		Mockito.when(this.service.deleteTask(task.getId())).thenReturn(true);
 		
-        ResponseEntity<Boolean> bool = new ResponseEntity<Boolean>(true, HttpStatus.NO_CONTENT);
+        ResponseEntity<Boolean> bool = this.controller.deleteTaskById(task.getId());
 		
-		assertThat(bool).isEqualTo(controller.deleteTaskById(task.getId()));
+		assertThat(bool).isEqualTo(new ResponseEntity<Boolean>(HttpStatus.NO_CONTENT));
 		
 		Mockito.verify(this.service, Mockito.times(1)).deleteTask(task.getId());
 	}
 	
 	@Test
-	public void updateUserTest() {
+	public void updateTaskTest() {
 		
 		Task task = new Task(1L, "Still gotta finish this project", false);
 		Task task2 = new Task(2L, "Exercise", true);
 		
 		Mockito.when(this.service.updateTask(task.getId(), task2)).thenReturn(task2);
 		
-		ResponseEntity<Task> anotherone = new ResponseEntity<Task>(task, HttpStatus.OK);//MAYBE WORK ON THIS???
+		ResponseEntity<Task> anotherone = new ResponseEntity<Task>(task2, HttpStatus.OK);//MAYBE WORK ON THIS???
 		
 		assertThat(anotherone).isEqualTo(controller.updateTaskById(task.getId(), task2));
 		
@@ -98,13 +99,15 @@ public class TaskControllerUnitTest {
 	public void assignTaskToUserTest() {
 		
 		Task task = new Task(1L, "Still gotta finish this project", false);
-		User user = new User(100L, "Omkar");
+		TaskUser user = new TaskUser(100L, "Omkar");
 		
 		//Mockito.when(this.service.assignTask(task.getId(), user.getId()).thenReturn(task));
 		
-		ResponseEntity<Task> anotherone = new ResponseEntity<Task>(task, HttpStatus.OK);
+		ResponseEntity<Task> anotherone = this.controller.assignUserToTask(task.getId(), user.getId());
 		
-		assertThat(anotherone).isEqualTo(controller.assignUserToTask(task.getId(), user.getId()));
+		assertThat(anotherone).isEqualTo(new ResponseEntity<Task>(HttpStatus.OK));
 	}
+	
+	
 
 }

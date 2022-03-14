@@ -12,40 +12,40 @@ public class UserDomainUnitTest {
 	
 	@Test
 	public void userConstructorEmptyTest() {
-		User user = new User();
+		TaskUser user = new TaskUser();
 		assertNull(user.getId());
 		assertNull(user.getName());
 		assertNull(user.getTasks());
 		
-		assertThat(user).isInstanceOf(User.class);
+		assertThat(user).isInstanceOf(TaskUser.class);
 	}
 	
 	@Test
 	public void userConstructorWithoutTasks() {
-		User user = new User(108L, "Omkar");
+		TaskUser user = new TaskUser(108L, "Omkar");
 		assertNotNull(user.getId());
 		assertNotNull(user.getName());
 		assertNull(user.getTasks());
 		
-		assertThat(user).isInstanceOf(User.class);
+		assertThat(user).isInstanceOf(TaskUser.class);
 		assertThat(user.getId()).isEqualTo(108L);
 		assertThat(user.getName()).isEqualTo("Omkar");
 	}
 	
 	@Test
 	public void userConstructorWithNameOnly() {
-		User user = new User("Omkar");
+		TaskUser user = new TaskUser("Omkar");
 		assertNull(user.getId());
 		assertNotNull(user.getName());
 		assertNull(user.getTasks());
 		
-		assertThat(user).isInstanceOf(User.class);
+		assertThat(user).isInstanceOf(TaskUser.class);
 		assertThat(user.getName()).isEqualTo("Omkar");
 	}
 	
 	@Test
 	public void TestingUserSetters() {
-		User user = new User(10L, "Micheal");
+		TaskUser user = new TaskUser(10L, "Micheal");
 		user.setId(11L);
 		assertThat(user.getId()).isEqualTo(11L);
 		user.setName("Omkar");

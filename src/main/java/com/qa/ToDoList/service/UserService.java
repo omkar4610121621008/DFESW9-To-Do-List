@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.qa.ToDoList.domain.User;
+import com.qa.ToDoList.domain.TaskUser;
 import com.qa.ToDoList.repo.UserRepository;
 
 
@@ -20,27 +20,27 @@ public class UserService {
 		this.repo = repo;
 	}
 	
-	public User createUser(User model) {
+	public TaskUser createUser(TaskUser model) {
 		return this.repo.save(model);
 	}
 
-	public User updateUser(long id, User model) {
-		Optional<User> T = this.repo.findById(id);//MAYBE ADD OR ELSE THROWS
-		User exists = T.orElseThrow();
+	public TaskUser updateUser(long id, TaskUser model) {
+		Optional<TaskUser> T = this.repo.findById(id);//MAYBE ADD OR ELSE THROWS
+		TaskUser exists = T.orElseThrow();
 		exists.setName(model.getName());
 		return this.repo.save(exists);
 	}
 	
-	public List<User> readAll() {
+	public List<TaskUser> readAll() {
 		return this.repo.findAll();//MAYBE WORK ON THIS
 	}
 
-	public User readByUserId(long id) {
+	public TaskUser readByUserId(long id) {
 		return this.repo.findById(id).orElseThrow();
 	}
 	
 	public boolean deleteUser(long id) {
-		Optional<User> userExists = this.repo.findById(id);
+		Optional<TaskUser> userExists = this.repo.findById(id);
 		
 		if (userExists.isPresent()) {
 			this.repo.deleteById(id);

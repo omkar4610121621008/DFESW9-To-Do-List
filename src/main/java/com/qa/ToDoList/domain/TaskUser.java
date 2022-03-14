@@ -20,8 +20,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "taskUser")
+public class TaskUser {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,25 +37,25 @@ public class User {
 	private List<Task> tasks;
 	
 
-	public User() {
+	public TaskUser() {
 		super();
 	}
 	
 
-	public User(Long id, String name) {
+	public TaskUser(Long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 	
 
-	public User(String name) {
+	public TaskUser(String name) {
 		super();
 		this.name = name;
 	}
 
 
-	public User(Long id, String name, List<Task> tasks) {
+	public TaskUser(Long id, String name, List<Task> tasks) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -94,6 +94,42 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", tasks=" + tasks + "]";
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((tasks == null) ? 0 : tasks.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TaskUser other = (TaskUser) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (tasks == null) {
+			if (other.tasks != null)
+				return false;
+		} else if (!tasks.equals(other.tasks))
+			return false;
+		return true;
+	}
+
+
+	
 
 	
 	
