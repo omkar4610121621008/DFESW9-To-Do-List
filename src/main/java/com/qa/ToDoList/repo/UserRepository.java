@@ -6,11 +6,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-import com.qa.ToDoList.domain.User;
+import com.qa.ToDoList.domain.TaskUser;
 
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<TaskUser, Long>{
 	
-	Optional<User> findByName(String name);
+	Optional<TaskUser> findByName(String name);
 	
 	//@Query("select user.id, name, completed, description from user join task on user.id = user_fk")
 	//public List<User> findAllUsersWithTasks();

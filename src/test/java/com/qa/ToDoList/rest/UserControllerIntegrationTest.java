@@ -10,6 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -17,10 +20,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qa.ToDoList.domain.User;
+import com.qa.ToDoList.domain.Task;
+import com.qa.ToDoList.domain.TaskUser;
 
-@SpringBootTest(webEnvironment = WebEnvironment.MOCK)
+@SpringBootTest
 @AutoConfigureMockMvc
+@Sql(scripts = {"classpath:test-schema.sql", "classpath:test-data.sql"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@ActiveProfiles("test")
 public class UserControllerIntegrationTest {
 	
 	@Autowired
@@ -34,10 +40,10 @@ public class UserControllerIntegrationTest {
 	
 	@Test
 	public void testingCreate() throws Exception{
-		User user = new User(1L, "Omkar");
-		User john = new User(2L, "John");
+		//User user = new User(1L, "Omkar");
+		TaskUser john = new TaskUser(2L, "John");
 		
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.POST, "http://localhost:8080/user").contentType(MediaType.APPLICATION_JSON).content(jsonifier.writeValueAsString(user)).accept(MediaType.APPLICATION_JSON);
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.POST, "http://localhost:8080/user").contentType(MediaType.APPLICATION_JSON).content(jsonifier.writeValueAsString(john)).accept(MediaType.APPLICATION_JSON);
 		
 		ResultMatcher status = MockMvcResultMatchers.status().isCreated();
 		ResultMatcher content = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(john));
@@ -48,11 +54,10 @@ public class UserControllerIntegrationTest {
 	@Test
 	public void testingReadAll() throws Exception{
 		
-		List<User> users = new ArrayList<User>();
-		User user = new User(1L, "Omkar");
-		User john = new User(2L, "John");
+		List<TaskUser> users = new ArrayList<TaskUser>();
+		TaskUser user = new TaskUser(1L, "Omkar");
+		
 		users.add(user);
-		users.add(john);
 				
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "http://localhost:8080/user/all");
 		
@@ -64,8 +69,7 @@ public class UserControllerIntegrationTest {
 	
 	@Test
 	public void testingReadById() throws Exception{
-		
-		User user = new User(1L, "Omkar");
+		TaskUser user = new TaskUser(1L, "Omkar");
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "http://localhost:8080/user/" + user.getId());
 		
@@ -78,7 +82,7 @@ public class UserControllerIntegrationTest {
 	@Test
 	public void testingUpdate() throws Exception{
 		
-		User user = new User(1L, "Omkar");
+		TaskUser user = new TaskUser(1L, "Omkar");
 		
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.PUT, "http://localhost:8080/user/update/" + user.getId()).contentType(MediaType.APPLICATION_JSON).content(jsonifier.writeValueAsString(user)).accept(MediaType.APPLICATION_JSON);
 		
@@ -91,7 +95,7 @@ public class UserControllerIntegrationTest {
 	@Test
 	public void testingDelete() throws Exception{
 		
-		User user = new User(1L, "Omkar");
+		TaskUser user = new TaskUser(1L, "Omkar");
 		
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "http://localhost:8080/user/delete/" + user.getId());
 		

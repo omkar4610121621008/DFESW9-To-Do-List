@@ -35,7 +35,7 @@ public class TaskDomainUnitTest {
 	
 	@Test
 	public void taskConstructor3() {
-		User user = new User("Omkar");
+		TaskUser user = new TaskUser("Omkar");
 		Task task = new Task("Finish To Do List Project", user);
 		assertNull(task.getId());
 		assertNotNull(task.getDescription());
@@ -65,7 +65,7 @@ public class TaskDomainUnitTest {
 	
 	@Test
 	public void taskConstructor5() {
-		User user = new User("Omkar");
+		TaskUser user = new TaskUser("Omkar");
 		Task task = new Task(3L,"Finish To Do List Project", false, user);
 		assertNotNull(task.getId());
 		assertNotNull(task.getDescription());
