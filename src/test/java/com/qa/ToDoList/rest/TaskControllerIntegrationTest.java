@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
@@ -32,9 +31,6 @@ public class TaskControllerIntegrationTest {
 	@Autowired
 	private MockMvc mock;
 	
-	//@Autowired
-	//private ModelMapper mapper;
-	
 	@Autowired
 	private ObjectMapper jsonifier;
 	
@@ -42,7 +38,7 @@ public class TaskControllerIntegrationTest {
 	
 	@Test
 	public void testingCreate() throws Exception{
-		//Task task = new Task(1L, "Still gotta finish this project", false);
+
 		Task task2 = new Task(1L, "Workout", true);
 		
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.POST, "http://localhost:8080/task").contentType(MediaType.APPLICATION_JSON).content(jsonifier.writeValueAsString(task2)).accept(MediaType.APPLICATION_JSON);
@@ -56,18 +52,17 @@ public class TaskControllerIntegrationTest {
 	@Test
 	public void testingReadAll() throws Exception{
 		
-		//List<Task> tasks = new ArrayList<Task>();
-		//Task task = new Task(1L, "Still gotta finish this project", false);
-		//Task task2 = new Task(2L, "Workout", true);
-		//tasks.add(task);
-		//tasks.add(task2);
+		List<Task> tasks = new ArrayList<Task>();
+
+		Task task = new Task(1L, "finish this project", false);
+		tasks.add(task);
 				
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "http://localhost:8080/task/all");
 		
 		ResultMatcher status = MockMvcResultMatchers.status().isOk();
-		//ResultMatcher content = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(tasks));
+		ResultMatcher content = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(tasks));
 		
-		this.mock.perform(mockRequest).andExpect(status);//.andExpect(content);
+		this.mock.perform(mockRequest).andExpect(status).andExpect(content);
 	}
 	
 	@Test

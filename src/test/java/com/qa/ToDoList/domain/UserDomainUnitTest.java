@@ -44,14 +44,22 @@ public class UserDomainUnitTest {
 	}
 	
 	@Test
+	public void testingToString() {
+		TaskUser user = new TaskUser(1L, "Omkar");
+		String stringtest = "TaskUser [id=1, name=Omkar, tasks=null]";
+		assertThat(stringtest).isEqualTo(user.toString());
+	}
+	
+	@Test
 	public void TestingUserSetters() {
 		TaskUser user = new TaskUser(10L, "Micheal");
 		user.setId(11L);
 		assertThat(user.getId()).isEqualTo(11L);
 		user.setName("Omkar");
 		assertThat(user.getName()).isEqualTo("Omkar");
-		//add task as well
 	}
+	
+	
 	
 	
 

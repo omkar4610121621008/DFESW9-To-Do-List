@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -41,7 +39,7 @@ public class UserServiceUnitTest {
 		
 	
 	}
-	//DO UPDATE TEST!!!!!!!!!!!
+
 	@Test
 	public void testingReadAll() {
 		TaskUser micheal = new TaskUser(2L, "Micheal");
@@ -62,8 +60,12 @@ public class UserServiceUnitTest {
 		TaskUser micheal = new TaskUser(2L, "Micheal");
 
 		when(this.userservice.readByUserId(micheal.getId())).thenReturn(micheal);
+		
+		TaskUser user = this.userservice.readByUserId(micheal.getId());
+		
+		assertThat(user).isEqualTo(micheal);
 
-		//Mockito.verify(this.userservice, Mockito.times(1)).readByUserId(micheal.getId());//MAYBE WORK ON THIS TEST
+		Mockito.verify(this.userservice, Mockito.times(1)).readByUserId(micheal.getId());
 	}
 	
 
@@ -77,10 +79,25 @@ public class UserServiceUnitTest {
 		
 		assertThat(true).isEqualTo(!(this.userrepo.existsById(2L)));
 		
-		//Mockito.verify(this.userrepo, Mockito.times(1)).findById(2L);
-		//Mockito.verify(this.userrepo, Mockito.times(1)).deleteById(2L);
 		Mockito.verify(this.userrepo, Mockito.times(1)).existsById(2L);
 
+	}
+	
+	@Test
+	public void testingUpdate() {
+		TaskUser micheal = new TaskUser(1L, "Micheal");
+		TaskUser cera = new TaskUser(2L, "Cera");
+		Optional<TaskUser> optional = Optional.of(micheal);
+		TaskUser cera2 = new TaskUser(1L, cera.getName());
+		
+		when(this.userrepo.findById(micheal.getId())).thenReturn(optional);
+		when(this.userrepo.save(Mockito.any(TaskUser.class))).thenReturn(cera);
+		
+		TaskUser expect = this.userservice.updateUser(micheal.getId(), cera);
+		
+		assertThat(this.userservice.createUser(cera2)).isEqualTo(expect);
+		
+		
 	}
 
 }
