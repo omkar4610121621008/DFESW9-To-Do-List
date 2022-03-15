@@ -23,12 +23,10 @@ public class TaskController {
 	
 	private TaskService taskservice;
 	
-	//private TaskRepository repo;//PUT BOTTOM CONTROLLER INTO SERVICE
 	
 	@Autowired
 	public TaskController(TaskService taskservice, TaskRepository repo) {
 		this.taskservice = taskservice;
-		//this.repo = repo;
 	}
 	
 	
@@ -57,22 +55,10 @@ public class TaskController {
 	    return new ResponseEntity<>(this.taskservice.deleteTask(id) ? HttpStatus.NO_CONTENT: HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	//@RequestMapping("/user/{id}/tasks")
-	//public ResponseEntity<List<Task>> getAllTasksById(@PathVariable Long id) {
-	//  return new ResponseEntity<>(this.taskservice.getAllTasksByUserId(id), HttpStatus.OK);
-	//}
-	
-	
 	@PutMapping("/task/{taskId}/user/{userId}")
 	public ResponseEntity<Task> assignUserToTask(@PathVariable long taskId, @PathVariable Long userId) {
 		return new ResponseEntity<>(this.taskservice.assignTask(taskId, userId), HttpStatus.OK);
 	}
-	
-	//@GetMapping("/user/{user_id}/tasks")
-	//public List<Task> getAllTasksByUserId(@PathVariable(value =  "user_id") Long user_id) {
-	//	return this.repo.findByUserId(user_id);
-	//}
-	
 
   }
 	

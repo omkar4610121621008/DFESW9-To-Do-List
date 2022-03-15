@@ -25,14 +25,14 @@ public class UserService {
 	}
 
 	public TaskUser updateUser(long id, TaskUser model) {
-		Optional<TaskUser> T = this.repo.findById(id);//MAYBE ADD OR ELSE THROWS
+		Optional<TaskUser> T = this.repo.findById(id);
 		TaskUser exists = T.orElseThrow();
 		exists.setName(model.getName());
 		return this.repo.save(exists);
 	}
 	
 	public List<TaskUser> readAll() {
-		return this.repo.findAll();//MAYBE WORK ON THIS
+		return this.repo.findAll();
 	}
 
 	public TaskUser readByUserId(long id) {
@@ -49,9 +49,7 @@ public class UserService {
 		return false;
 	}
 	
-	//public List<User> getUsersByTasks(){
-	//	return this.repo.findAllUsersWithTasks();
-	}
+}
 	
 	
 		

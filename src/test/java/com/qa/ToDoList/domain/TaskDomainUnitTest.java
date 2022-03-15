@@ -80,6 +80,13 @@ public class TaskDomainUnitTest {
 	}
 	
 	@Test
+	public void testingToString() {
+		Task task = new Task(3L,"Finish To Do List Project", false);
+		String stringtest = "Task [id=3, description=Finish To Do List Project, completed=false]";
+		assertThat(stringtest).isEqualTo(task.toString());
+	}
+	
+	@Test
 	public void TestingTaskSetters() {
 		Task task = new Task(3L,"Finish To Do List Project", false);
 		task.setId(10L);
@@ -88,7 +95,6 @@ public class TaskDomainUnitTest {
 		assertThat(task.getDescription()).isEqualTo("Play Piano");
 		task.setCompleted(true);
 		assertThat(task.getCompleted()).isEqualTo(true);
-		//add user as well
 	}
 
 }

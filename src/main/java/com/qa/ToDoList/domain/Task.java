@@ -26,7 +26,7 @@ public class Task {
 	private String description;
 	
 	@Column(name = "completed", nullable = false)
-	private Boolean completed = false;//ADD DEFAULT VALUE AND ITS STILL REQUIRED FOR SOME REASON
+	private Boolean completed = false;
 	
 	@ManyToOne(targetEntity = TaskUser.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_fk", referencedColumnName = "id")
@@ -105,44 +105,6 @@ public class Task {
 		return "Task [id=" + id + ", description=" + description + ", completed=" + completed + "]";
 	}
 
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((completed == null) ? 0 : completed.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Task other = (Task) obj;
-		if (completed == null) {
-			if (other.completed != null)
-				return false;
-		} else if (!completed.equals(other.completed))
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
-		return true;
-	}
 
 
 }

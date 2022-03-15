@@ -101,8 +101,6 @@ public class TaskControllerUnitTest {
 		Task task = new Task(1L, "Still gotta finish this project", false);
 		TaskUser user = new TaskUser(100L, "Omkar");
 		
-		//Mockito.when(this.service.assignTask(task.getId(), user.getId()).thenReturn(task));
-		
 		ResponseEntity<Task> anotherone = this.controller.assignUserToTask(task.getId(), user.getId());
 		
 		assertThat(anotherone).isEqualTo(new ResponseEntity<Task>(HttpStatus.OK));

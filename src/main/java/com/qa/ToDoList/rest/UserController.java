@@ -50,16 +50,7 @@ public class UserController {
   @DeleteMapping("/user/delete/{id}")
   public ResponseEntity<Boolean> deleteUser(@PathVariable long id) {
     return new ResponseEntity<>(this.service.deleteUser(id) ? HttpStatus.NO_CONTENT: HttpStatus.INTERNAL_SERVER_ERROR);
-  }//referenced those httpstatus from another project due to being stuck
-  
-  
-  
- // @GetMapping("/user/task/all")
-  //public ResponseEntity<List<User>> getAllUsersByTasks() {
-  //  return new ResponseEntity<>(this.service.getUsersByTasks(), HttpStatus.OK);
-  ///}
-
-  
+  }
   
   
 }
