@@ -6,4 +6,40 @@ I expected this to be quite challeneging as it is my first time creating somethi
 
 I have many future plans for this project. I plan to add a front end, add many more custom queries such as "Find task by completed", and try changing around the User domain code so that my User controller integration test will pass properly.
 
+# instructions.
+You will require some software:
+Java, an IDE such as eclipse, H2 console and postman to send data to the h2 database.
+
+1)Clone or download a zip file of my repository.
+
+2)Go to src/main/resources into the application.resources and check if spring.profiles.active=prod. If it is "=test" change it to prod.
+
+3)In the same src/main/resources go to application-prod.properties and check if spring.h2.console.enabled=true, this makes it so that you can see the data in the H2 database.
+
+4)Once the above steps are completed, run the project as a "Spring boot app". When it says, "ToDoList.ToDoListProjectApplication : Started ToDoListProjectApplication" in one of the last lines of the console, then you can open your postman.
+
+5)If not already entered, input "http://localhost:8080" into the "Enter request url" area.
+
+6)There are a number of request you are able to do. At the end of the url, you can add:
+
+![image](https://user-images.githubusercontent.com/93192833/158563707-b236151e-89c3-4c42-b13d-93ebaefbb5a3.png)
+
+This will create a user but you need to enter the required data for the body.
+
+![image](https://user-images.githubusercontent.com/93192833/158563814-9b2de5e8-eac2-48f5-881d-82a067ded6e4.png)
+
+This will update an existing user. You will need to add the number of the existing user where it has {id} as well as inputing values into the body that you want to cahnge of the existing user.
+
+![image](https://user-images.githubusercontent.com/93192833/158563928-037ee298-8584-4bab-ae5e-6793816b31cc.png)
+
+This will display all the users.
+
+
+
+
+
 Here are some postman examples of inputting data and getting a return:
+
+
+![image](https://user-images.githubusercontent.com/93192833/158555163-09b95873-9eb4-4d10-8471-950b76110b7a.png)
+
