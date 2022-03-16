@@ -32,14 +32,62 @@ This will update an existing user. You will need to add the number of the existi
 
 ![image](https://user-images.githubusercontent.com/93192833/158563928-037ee298-8584-4bab-ae5e-6793816b31cc.png)
 
-This will display all the users.
+This will display all the users as well as the tasks assigned to them.
+
+![image](https://user-images.githubusercontent.com/93192833/158564478-1ce98edc-e632-4fbc-866e-8bb0a400bf15.png)
+
+This will display a specific user by inputting the id of the user.
+
+![image](https://user-images.githubusercontent.com/93192833/158564594-32cc6778-2e26-4706-9084-c096e2e25004.png)
+
+This will delete the specific user from the database and return true or 1 to confirm it by inputting the user id. When deleting a user with a task in it, the task will also be deleted.
+
+![image](https://user-images.githubusercontent.com/93192833/158564780-c4392a7e-0d27-4ae0-b317-284874654874.png)
+
+This will create a task but you need to enter the required data for the body.
+
+![image](https://user-images.githubusercontent.com/93192833/158564876-2717be9b-30d1-418d-aa51-60590814b11c.png)
+
+This will update an existing task. You will need to add the number of the existing task where it has {id} as well as inputing values into the body that you want to change of the existing task.
+
+![image](https://user-images.githubusercontent.com/93192833/158565023-2fedc0be-90e1-4e8b-9fde-fde1096673fa.png)
+
+This will assign a task to a user. you will need to input the id's of both the task and user and it will be assigned. When you get the user by id, you will see the task nested in a list inside the user body.
+
+![image](https://user-images.githubusercontent.com/93192833/158565455-51847c93-5167-4f9d-a5c3-d58306bb58ec.png)
+
+This will display all the tasks.
+
+![image](https://user-images.githubusercontent.com/93192833/158565554-2eaa704b-cdac-4e8f-aac6-e154fc1c9934.png)
+
+This will display a specific task by inputting the id of the task.
+
+![image](https://user-images.githubusercontent.com/93192833/158565693-e232643e-84e5-4600-8ee6-1b023c56ff6f.png)
+
+This will delete the specific task from the database and return true or 1 to confirm it by inputting the task id. When deleting a task that is assigned to a user, the user will NOT be deleted.
 
 
+7)Open the h2 console or type in your browser: http://localhost:8080/h2 to open your database.
 
+8)The details of the database url, username and password should automatically be present in the console. If not, input the details from the application-prod.properties file in your src/main/resources.
 
+9)Once in the database, type in "Select * from task;" and "select * from task_user;" and press run. You will then see your data.
+
+# Examples
 
 Here are some postman examples of inputting data and getting a return:
 
+Creating a user with a nested task:
+
 
 ![image](https://user-images.githubusercontent.com/93192833/158555163-09b95873-9eb4-4d10-8471-950b76110b7a.png)
+
+updating the user:
+
+![image](https://user-images.githubusercontent.com/93192833/158566371-cb315b26-b482-455e-9ea4-bf5951b5e07a.png)
+
+Data shown in the database:
+
+![image](https://user-images.githubusercontent.com/93192833/158566448-075122ab-a99f-4d84-9410-b1541a62565e.png)
+
 
