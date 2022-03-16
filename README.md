@@ -110,6 +110,13 @@ To run the tests, go to application.resources located in the src/main/resources 
 
 https://omkarwatkinson.atlassian.net/jira/software/projects/TOD/boards/2/roadmap
 
+# ERD diagram
+
+This erd diagram helped me visualise how I will make my tables as well as how they relate:
+
+![image](https://user-images.githubusercontent.com/93192833/158576724-04fe8791-6b9d-417c-92a6-135b56ef5c83.png)
+
+
 # Conclusion
 
 Many thanks to the DFE tutors such as Piers Barber and Chris Yiangou as well as many others that have helped throughout this bootcamp. Also Thanks to my fellow peers, it was quite a journey.
